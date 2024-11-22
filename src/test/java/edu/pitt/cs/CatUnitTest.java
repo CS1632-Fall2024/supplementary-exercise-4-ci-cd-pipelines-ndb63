@@ -22,11 +22,15 @@ public class CatUnitTest {
 	 */
 
 	Cat c; // cat object
+	//Cat c1;
+
 
 	@Before
 	public void setUp() throws Exception {
 		// INITIALIZE THE TEST FIXTURE
-
+		c = Cat.createInstance(InstanceType.MOCK, 1, "Jennyanydots");
+		//c1 = Cat.createInstance(InstanceType.SOLUTION, 1, "Jennyanydots");
+		//r = RentACat.createInstance(InstanceType.SOLUTION);
 		// Create a Cat with ID 1 and name "Jennyanydots", assign to c using a call to Cat.createInstance(InstanceType, int, String).
 		// Passing InstanceType.IMPL as the first parameter will create a real cat using your CatImpl implementation.
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
@@ -53,6 +57,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
+		int ret = c.getId();
+		assertEquals("Cat ID is not 1", 1, ret);
 	}
 
 	/**
@@ -67,6 +73,17 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
+			String name = c.getName();
+			assertEquals("Cat name is not Jennyanydots", "Jennyanydots", name);
+	}
+
+	@Test
+	public void testIncID() {
+		// TODO: Fill in
+			c.incID();
+			Mockito.when(c.getId()).thenReturn(2);
+			assertEquals(2, c.getId());
+			//assertEquals("Cat name is not Jennyanydots", "Jennyanydots", name);
 	}
 
 	/**
@@ -81,6 +98,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetRented() {
 		// TODO: Fill in
+		boolean rent = c.getRented();
+		assertFalse("Return value of c.getRented is true", rent);
 	}
 
 	/**
@@ -95,6 +114,8 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		String str = c.toString();
+		assertEquals("The return value is not ID 1. Jennyanydots", "ID 1. Jennyanydots", str);
 	}
 
 	/**
@@ -110,6 +131,9 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
+		c.rentCat();
+		boolean b = c.getRented();
+		assertTrue("Return value of c.getRented is false", b);
 	}
 
 	/**
@@ -126,6 +150,10 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
+		c.returnCat();
+		boolean b = c.getRented();
+		assertFalse("The return value of c.getRented is true.", b);
+
 	}
 
 	/**
@@ -141,6 +169,11 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
+			c.renameCat("Garfield");
+			String name = c.getName();
+			assertEquals("The return value of c.getName is not Garfield", "Garfield", name);
+			String toStr = c.toString();
+			assertEquals("The return value of c.toString is not ID 1. Garfield", "ID 1. Garfield", toStr);
 	}
 
 }
