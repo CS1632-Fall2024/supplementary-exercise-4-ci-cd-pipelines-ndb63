@@ -1,6 +1,6 @@
 name: Maven CI
 
-# Triggers manually or on push or pull request on the main branch
+# Triggers manually r on push or pull request on the main branch
 # (in other words, on a code integration event.)
 on:
   workflow_dispatch:
